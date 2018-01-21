@@ -1,0 +1,3 @@
+/Users/Michael/Dropbox/Señor/Capstone/ImageCapture/CMakeFiles/rebuild_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/ImageCapture/CMakeFiles/edit_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/ImageCapture/CMakeFiles/imageCapture.dir
