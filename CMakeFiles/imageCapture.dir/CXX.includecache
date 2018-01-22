@@ -11,6 +11,8 @@ opencv2/opencv.hpp
 /Users/Michael/Dropbox/Señor/Capstone/ImageCapture/opencv2/opencv.hpp
 iostream
 -
+unistd.h
+-
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
