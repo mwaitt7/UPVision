@@ -13,13 +13,13 @@ using namespace std;
 using namespace cv;
 
 int main() {
-	VideoCapture cap(0); //Take a pic
+	VideoCapture cap(0);
 
 	for(;;) {
         Mat frame;
-        cap >> frame; // get a new frame from camera
+        cap >> frame; //Take a pic
         imwrite("FaceFiles/yourFace.png", frame);
-        if(waitKey(30) >= 0) break;   // you can increase delay to 2 seconds here
+        if(waitKey(30) >= 0) break; //Loops continuously until process is terminated
     }
 	return 0;
 }
