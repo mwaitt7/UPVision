@@ -15,6 +15,11 @@ using namespace cv;
 int main() {
 	VideoCapture cap(0);
 
+    //checks whether the capture is initialized or not
+    if(!cap.isOpened()) {
+        return -1;
+    }
+    
 	for(;;) {
         Mat frame;
         cap >> frame; //Take a pic
