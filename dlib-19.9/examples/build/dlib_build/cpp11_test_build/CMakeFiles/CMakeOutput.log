@@ -1,0 +1,26 @@
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeeded with the following output:
+Change Dir: /Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_93d11/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_93d11.dir/build.make CMakeFiles/cmTC_93d11.dir/build
+Building CXX object CMakeFiles/cmTC_93d11.dir/src.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX11   -std=c++11 -o CMakeFiles/cmTC_93d11.dir/src.cxx.o -c /Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_93d11
+/usr/local/Cellar/cmake/3.9.5/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93d11.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -DCOMPILER_SUPPORTS_CXX11 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_93d11.dir/src.cxx.o  -o cmTC_93d11 
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeeded with the following output:
+Change Dir: /Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0253e/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_0253e.dir/build.make CMakeFiles/cmTC_0253e.dir/build
+Building CXX object CMakeFiles/cmTC_0253e.dir/src.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -DCOMPILER_SUPPORTS_CXX0X   -std=c++0x -o CMakeFiles/cmTC_0253e.dir/src.cxx.o -c /Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_0253e
+/usr/local/Cellar/cmake/3.9.5/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0253e.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -DCOMPILER_SUPPORTS_CXX0X -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0253e.dir/src.cxx.o  -o cmTC_0253e 
+
+Source file was:
+int main() { return 0; }
