@@ -337,7 +337,7 @@ DLIB_PNG_SUPPORT:BOOL=ON
 //Disable this if you don't want to use a BLAS library
 DLIB_USE_BLAS:BOOL=ON
 
-//Disable this if you don't want to use a BLAS library
+//Disable this if you don't want to use NVIDIA CUDA
 DLIB_USE_CUDA:STRING=OFF
 
 //Disable this if you don't want to use a LAPACK library
@@ -380,7 +380,7 @@ USE_AVX_INSTRUCTIONS:BOOL=OFF
 USE_SSE2_INSTRUCTIONS:BOOL=OFF
 
 //Compile your program with SSE4 instructions
-USE_SSE4_INSTRUCTIONS:BOOL=OFF
+USE_SSE4_INSTRUCTIONS:BOOL=ON
 
 //Path to a file.
 X11_ICE_INCLUDE_PATH:PATH=/opt/X11/include
@@ -956,6 +956,8 @@ LAPACK_REFERENCE_lapack_VERSION:INTERNAL=
 LIBJPEG_IS_GOOD:INTERNAL=1
 //Have function png_create_read_struct
 LIBPNG_IS_GOOD:INTERNAL=1
+//Have function sgetrf_single
+OPENBLAS_HAS_LAPACK:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PNG_LIBRARY_DEBUG

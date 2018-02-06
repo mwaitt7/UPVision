@@ -7065,6 +7065,8 @@ platform.h
 /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/platform.h
 
 /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp
+math.h
+-
 utility
 -
 dlib-19.9/dlib/opencv.h
