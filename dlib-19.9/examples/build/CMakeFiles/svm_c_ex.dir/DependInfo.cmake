@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/Michael/Downloads/dlib-19.9/examples/svm_c_ex.cpp" "/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles/svm_c_ex.dir/svm_c_ex.cpp.o"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/svm_c_ex.cpp" "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles/svm_c_ex.dir/svm_c_ex.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -12,12 +12,13 @@ set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include"
   "/usr/local/include/opencv"
-  "/Users/Michael/Downloads/dlib-19.9/dlib/.."
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/.."
+  "/Library/Frameworks/Mono.framework/Headers"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/CMakeFiles/dlib.dir/DependInfo.cmake"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/dlib_build/CMakeFiles/dlib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

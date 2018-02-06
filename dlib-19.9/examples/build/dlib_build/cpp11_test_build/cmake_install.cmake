@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Michael/Downloads/dlib-19.9/dlib/cmake_utils/test_for_cpp11
+# Install script for directory: /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/cmake_utils/test_for_cpp11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/Michael/Downloads/dlib-19.9/examples/build/dlib_build/cpp11_test_build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/dlib_build/cpp11_test_build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

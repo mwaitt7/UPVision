@@ -6,12 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/Users/Michael/Dropbox/Señor/Capstone/ImageCapture/imageCapture.cpp
-opencv2/opencv.hpp
-/Users/Michael/Dropbox/Señor/Capstone/ImageCapture/opencv2/opencv.hpp
-iostream
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp
+utility
 -
-unistd.h
+dlib-19.9/dlib/opencv.h
+-
+opencv2/highgui/highgui.hpp
+-
+dlib-19.9/dlib/image_processing/frontal_face_detector.h
+-
+dlib-19.9/dlib/image_processing/render_face_detections.h
+-
+dlib-19.9/dlib/image_processing.h
+-
+dlib-19.9/dlib/gui_widgets.h
 -
 
 /usr/local/include/opencv/cxcore.h
@@ -789,6 +797,10 @@ opencv2/videoio.hpp
 /usr/local/include/opencv2/opencv2/videoio.hpp
 opencv2/highgui/highgui_c.h
 /usr/local/include/opencv2/opencv2/highgui/highgui_c.h
+
+/usr/local/include/opencv2/highgui/highgui.hpp
+opencv2/highgui.hpp
+/usr/local/include/opencv2/highgui/opencv2/highgui.hpp
 
 /usr/local/include/opencv2/highgui/highgui_c.h
 opencv2/core/core_c.h

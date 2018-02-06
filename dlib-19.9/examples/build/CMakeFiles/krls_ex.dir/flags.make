@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG   -DDLIB_JPEG_SUPPORT -DDLIB_USE_BLAS -DDLIB_USE_LAPACK
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include -I/usr/local/include/opencv -I/Users/Michael/Downloads/dlib-19.9/dlib/.. 
+CXX_INCLUDES = -I/usr/local/include -I/usr/local/include/opencv -I/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/.. -I/Library/Frameworks/Mono.framework/Headers 
 

@@ -43,10 +43,10 @@ RM = /usr/local/Cellar/cmake/3.9.5/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/Michael/Downloads/dlib-19.9/examples
+CMAKE_SOURCE_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/Michael/Downloads/dlib-19.9/examples/build
+CMAKE_BINARY_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/dnn_metric_learning_on_images_ex.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/dnn_metric_learning_on_images_ex.dir/flags.make
 
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o: CMakeFiles/dnn_metric_learning_on_images_ex.dir/flags.make
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o: ../dnn_metric_learning_on_images_ex.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o -c /Users/Michael/Downloads/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o -c /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp
 
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Michael/Downloads/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp > CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp > CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.i
 
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Michael/Downloads/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp -o CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/dnn_metric_learning_on_images_ex.cpp -o CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.s
 
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/dnn_metric_learning_on_images_ex.cpp.o.requires:
 
@@ -101,7 +101,7 @@ dnn_metric_learning_on_images_ex: /usr/lib/libcblas.dylib
 dnn_metric_learning_on_images_ex: /usr/lib/liblapack.dylib
 dnn_metric_learning_on_images_ex: /usr/lib/libsqlite3.dylib
 dnn_metric_learning_on_images_ex: CMakeFiles/dnn_metric_learning_on_images_ex.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable dnn_metric_learning_on_images_ex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable dnn_metric_learning_on_images_ex"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dnn_metric_learning_on_images_ex.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -118,6 +118,6 @@ CMakeFiles/dnn_metric_learning_on_images_ex.dir/clean:
 .PHONY : CMakeFiles/dnn_metric_learning_on_images_ex.dir/clean
 
 CMakeFiles/dnn_metric_learning_on_images_ex.dir/depend:
-	cd /Users/Michael/Downloads/dlib-19.9/examples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/Michael/Downloads/dlib-19.9/examples /Users/Michael/Downloads/dlib-19.9/examples /Users/Michael/Downloads/dlib-19.9/examples/build /Users/Michael/Downloads/dlib-19.9/examples/build /Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles/dnn_metric_learning_on_images_ex.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles/dnn_metric_learning_on_images_ex.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/dnn_metric_learning_on_images_ex.dir/depend
 

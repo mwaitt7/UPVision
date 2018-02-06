@@ -70,6 +70,7 @@ CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/flann
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/flann/saving.h
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/flann/timer.h
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/highgui.hpp
+CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/highgui/highgui.hpp
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/highgui/highgui_c.h
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/imgcodecs.hpp
 CMakeFiles/imageCapture.dir/imageCapture.cpp.o: /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h

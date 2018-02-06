@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 dlib_basic_cpp_build_tutorial.txt
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
 string
 -
 platform.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/platform.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/platform.h
 windows_magic.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/windows_magic.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/windows_magic.h
 algorithm
 -
 new
@@ -24,55 +24,55 @@ cstdlib
 limits
 -
 assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 error.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 noncopyable.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/noncopyable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/noncopyable.h
 enable_if.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/enable_if.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/enable_if.h
 uintn.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 numeric_constants.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/numeric_constants.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/numeric_constants.h
 memory_manager_stateless/memory_manager_stateless_kernel_1.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 config.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/config.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/config.h
 sstream
 -
 iosfwd
 -
 error.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 stack_trace.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/stack_trace.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/stack_trace.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer.h
 byte_orderer/byte_orderer_kernel_1.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_1.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_1.h
 byte_orderer_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 ../assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer/byte_orderer_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/config.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/config.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/enable_if.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/enable_if.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 string
 -
 new
@@ -86,113 +86,113 @@ cstdlib
 exception
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/float_details.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/float_details.h
 cmath
 -
 algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 limits
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/map_pair.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/map_pair.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/remover.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/remover.h
 functional
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h
 memory_manager_stateless_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/noncopyable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/noncopyable.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/numeric_constants.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/numeric_constants.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/platform.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/platform.h
 dlib_basic_cpp_build_tutorial.txt
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/dlib_basic_cpp_build_tutorial.txt
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue.h
 queue/queue_kernel_1.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_1.h
 queue/queue_kernel_2.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_2.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_2.h
 queue/queue_kernel_c.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_c.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_c.h
 queue/queue_sort_1.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_sort_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_sort_1.h
 algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_1.h
 queue_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 ../interfaces/enumerable.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
 ../interfaces/remover.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/remover.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/remover.h
 ../serialize.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/serialize.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/serialize.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_2.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_2.h
 queue_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 ../assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 ../interfaces/enumerable.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
 ../interfaces/remover.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/remover.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/remover.h
 ../serialize.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/serialize.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/serialize.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
 ../interfaces/enumerable.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
 ../interfaces/remover.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/remover.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/remover.h
 ../serialize.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/serialize.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/serialize.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_c.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_c.h
 queue_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 ../assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_sort_1.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_sort_1.h
 queue_sort_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_sort_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_sort_abstract.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 vector
 -
 ../sort.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/sort.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/sort.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_sort_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_sort_abstract.h
 queue_kernel_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/queue/queue_kernel_abstract.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/serialize.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/serialize.h
 algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 iomanip
 -
 cstddef
@@ -220,27 +220,27 @@ set
 limits
 -
 uintn.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 interfaces/enumerable.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/enumerable.h
 interfaces/map_pair.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/interfaces/map_pair.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/interfaces/map_pair.h
 enable_if.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/enable_if.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/enable_if.h
 unicode.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode.h
 byte_orderer.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/byte_orderer.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/byte_orderer.h
 float_details.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/float_details.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/float_details.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/sort.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/sort.h
 algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 functional
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/stack_trace.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/stack_trace.h
 iostream
 -
 dlib/stack_trace.h
@@ -248,19 +248,19 @@ dlib/stack_trace.h
 string
 -
 assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string.h
 string/string.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string/string.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string/string.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string/string.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string/string.h
 string_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string/string_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string/string_abstract.h
 sstream
 -
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 string
 -
 iostream
@@ -268,11 +268,11 @@ iostream
 iomanip
 -
 ../error.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 ../assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 ../uintn.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 cctype
 -
 algorithm
@@ -280,9 +280,9 @@ algorithm
 vector
 -
 ../enable_if.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/enable_if.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/enable_if.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string/string_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string/string_abstract.h
 string
 -
 iostream
@@ -290,33 +290,33 @@ iostream
 vector
 -
 ../error.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 assert.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/assert.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/assert.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode.h
 unicode/unicode.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode.h
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode.cpp
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode.cpp
 unicode.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode.h
 cwchar
 -
 ../string.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/string.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/string.h
 vector
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode.h
 ../uintn.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 ../algs.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/algs.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/algs.h
 unicode_abstract.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode_abstract.h
 string
 -
 cstring
@@ -324,23 +324,23 @@ cstring
 fstream
 -
 unicode.cpp
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode.cpp
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode.cpp
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/unicode/unicode_abstract.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/unicode/unicode_abstract.h
 ../uintn.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/uintn.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/uintn.h
 ../error.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/error.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/error.h
 string
 -
 fstream
 -
 
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/windows_magic.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/windows_magic.h
 platform.h
-/Users/Michael/Downloads/dlib-19.9/dlib/../dlib/platform.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/../dlib/platform.h
 
-/Users/Michael/Downloads/dlib-19.9/examples/queue_ex.cpp
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/queue_ex.cpp
 dlib/queue.h
 -
 iostream

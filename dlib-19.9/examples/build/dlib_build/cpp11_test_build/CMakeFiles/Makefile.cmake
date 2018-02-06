@@ -7,10 +7,10 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Users/Michael/Downloads/dlib-19.9/dlib/cmake_utils/test_for_cpp11/CMakeLists.txt"
-  "/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeCCompiler.cmake"
-  "/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeCXXCompiler.cmake"
-  "/Users/Michael/Downloads/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeSystem.cmake"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/cmake_utils/test_for_cpp11/CMakeLists.txt"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeCCompiler.cmake"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeCXXCompiler.cmake"
+  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/examples/build/CMakeFiles/3.9.5/CMakeSystem.cmake"
   "/usr/local/Cellar/cmake/3.9.5/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/local/Cellar/cmake/3.9.5/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/local/Cellar/cmake/3.9.5/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
