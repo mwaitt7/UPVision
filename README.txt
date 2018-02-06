@@ -1,3 +1,3 @@
 How to run imageCapture:
 
-Navigate to the project directory. Then, execute "make clean", then, execute "make". An executable will be produced. Run that executable. 
+Navigate to /build. Then run "cmake ..". Then run "cmake --build . --config Release".
