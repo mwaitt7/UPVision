@@ -29,6 +29,8 @@ int main() {
 			cerr << "Unable to connect to camera" << endl;
 			return 1;
 		}
+		cap.set(CV_CAP_PROP_FRAME_WIDTH,480);
+		cap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
 		
 		frontal_face_detector detector = get_frontal_face_detector();
 		shape_predictor pose_model;
@@ -145,7 +147,6 @@ int main() {
 			float headAngle = 0;
 			//If there's a face in frame, check angle
 			if (facialFeatures.size() != 0) {
-                
 				int x1 = facialFeatures[0].part(0)(0);
 				int x2 = facialFeatures[0].part(16)(0);
 
