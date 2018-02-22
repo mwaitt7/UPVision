@@ -39,7 +39,9 @@ int main() {
 		cap.set(CV_CAP_PROP_FRAME_WIDTH,480);
 		cap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
 
-		if (!cap.open()) {
+		// Michael changed this to isOpened() to fix compiler errors
+		// if (!cap.open()) {
+		if (!cap.isOpened()) {
 			cerr << "Unable to open camera" << endl;
 			return 1;
 		}

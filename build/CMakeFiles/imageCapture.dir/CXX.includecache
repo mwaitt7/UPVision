@@ -7081,6 +7081,8 @@ dlib-19.9/dlib/image_processing.h
 /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/image_processing.h
 dlib-19.9/dlib/gui_widgets.h
 /Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/gui_widgets.h
+raspicam/raspicam_cv.h
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/raspicam/raspicam_cv.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
