@@ -29,6 +29,9 @@ std::vector<full_object_detection> facialFeatures;
 int base_Y_Pos = 0;
 int prev_y = 0;
 float confidence_Level = 0.0;
+int UI_R = 0;
+int UI_G = 255;
+int UI_B = 0;
 int main() {
 	try {
 
@@ -222,12 +225,25 @@ int main() {
 				confidence_Level = 100;
 			}
 
+			//Set color for UI overlay
+			if (confidence_Level < 50) {
+				UI_R = 0;
+				UI_G = 255;
+			}
+			else if (confidence_Level < 70) {
+				UI_R = 255;
+				UI_G = 255;
+			}
+			else {
+				UI_R = 255;
+				UI_G = 0;
+			}
 
 			awindow.clear_overlay();
 			awindow.set_image(cimg);
 			awindow.add_overlay(render_face_detections(facialFeatures));
 			rectangle rect;
-			awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(255, 0, 0), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\n DISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\n Confidence Level :" +std::to_string(confidence_Level)));
+			awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
 		}
 	}
 	catch (serialization_error& e) {
