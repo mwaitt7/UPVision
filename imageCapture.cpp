@@ -227,7 +227,7 @@ int main() {
 			awindow.set_image(cimg);
 			awindow.add_overlay(render_face_detections(facialFeatures));
 			rectangle rect;
-			awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(255, 0, 0), "UPVision v0.1\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\n DISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\n Confidence Level :" +std::to_string(confidence_Level)));
+			awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(255, 0, 0), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\n DISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\n Confidence Level :" +std::to_string(confidence_Level)));
 		}
 	}
 	catch (serialization_error& e) {
