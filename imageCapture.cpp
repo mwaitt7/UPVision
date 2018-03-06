@@ -8,6 +8,7 @@
 
 #include <math.h>
 #include <utility>
+#include <cmath>
 #include "dlib-19.9/dlib/opencv.h"
 #include <opencv2/highgui/highgui.hpp>
 #include "dlib-19.9/dlib/image_processing/frontal_face_detector.h"
@@ -32,11 +33,14 @@ float confidence_Level = 0.0;
 int UI_R = 0;
 int UI_G = 255;
 int UI_B = 0;
+bool distanceInitialized = false; 
+int desiredConfMethod = 2; //Testing
+double offsetFromBase = 0;
+int tempDistance = 0;
+
 int main() {
 	try {
-
 		cv::VideoCapture cap(0);
-
 		cv::Mat frame;
 
 		/*
@@ -111,7 +115,6 @@ int main() {
 			std::vector<rectangle> faces = detector(cimg);
 			facialFeatures.clear();
 			for (unsigned long i = 0; i < faces.size(); ++i) {
-
 				facialFeatures.push_back(pose_model(cimg, faces[i]));
 
 				double P37_41_x = facialFeatures[i].part(37).x() - facialFeatures[i].part(41).x();
@@ -149,7 +152,6 @@ int main() {
 
 				// compute the distances between the horizontal eye landmark
 				double Dist_42_45 = sqrt((P42_45_x*P42_45_x) + (P42_45_y*P42_45_y));
-
 
 				// compute the eye aspect ratio for the left eye
 				double EAR_left = (Dist_43_47 + Dist_44_46) / (2.0 * Dist_42_45);
@@ -189,34 +191,78 @@ int main() {
 				blink_dur = 0;
 			}
 
-			int tempDistance = 0;
-			float headAngle = 0;
-			int ori_Distance = 0;
-			//If there's a face in frame, check angle
-			if (facialFeatures.size() != 0) {
-				//Check for base line
-				if (base_Y_Pos == 0) {
-					base_Y_Pos = facialFeatures[0].part(34)(1);
-				}
-				int current_Y_Pos = facialFeatures[0].part(34)(1);
-				tempDistance = current_Y_Pos -base_Y_Pos ;
-				if (tempDistance > 5) {
-					ori_Distance = tempDistance/5;
-				}
-				int x1 = facialFeatures[0].part(0)(0);
-				int x2 = facialFeatures[0].part(16)(0);
+			if(desiredConfMethod == 2) {
+				/*
+					CONFIDENCE LEVEL TESTING - METHOD #2: NOSE DISTANCE
 
-				int y1 = facialFeatures[0].part(0)(1);
-				int y2 = facialFeatures[0].part(16)(1);
+					Sets a baseline for distance between point 31-34 in y-direction,
+					then checks the offset from the current distance from the baseline.
 
-				headAngle = atan2(y1 - y2, x1 - x2);
-				headAngle = headAngle * 180 / M_PI;
-				//Place holder for now
-				prev_y = current_Y_Pos;
+					TODO: can make this better by doing same calculation with distance
+					from point 20->38, and 25->45. 
+
+					If that offset is negative => looking down, sleepy
+					If positive => looking up, alert
+				*/
+				double baseDistance = 0;
+				offsetFromBase = 0;
+				if (facialFeatures.size() != 0) {
+					//Get baseline
+					if(!distanceInitialized) {
+						baseDistance = facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1);
+						distanceInitialized = true;
+					}
+					else {
+						//Is this distance shorter than the baseline? (This means nodding off)
+						double tempDistance = facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1);
+						offsetFromBase = tempDistance - baseDistance;
+						
+						if (offsetFromBase <= 0) {
+							//Flip the sign for use in calculations
+							offsetFromBase = 0 - offsetFromBase;
+						}
+					}
+				}
+				//Confidence level calculation
+				confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
 			}
 
-			//Confidence level calculation
-			confidence_Level += (ori_Distance*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
+			//Head Orientation Stuff
+			float headAngle = 0;
+			int x1 = facialFeatures[0].part(0)(0);
+			int x2 = facialFeatures[0].part(16)(0);
+
+			int y1 = facialFeatures[0].part(0)(1);
+			int y2 = facialFeatures[0].part(16)(1);
+			headAngle = atan2(y1 - y2, x1 - x2);
+			headAngle = headAngle * 180 / M_PI;
+
+
+			if(desiredConfMethod == 1) {
+				/*
+					Confidence level calculation - Method #1: Nose Y-Pos
+				*/
+				tempDistance = 0;
+				int ori_Distance = 0;
+				//If there's a face in frame, check angle
+				if (facialFeatures.size() != 0) {
+					//Check for base line
+					if (base_Y_Pos == 0) {
+						base_Y_Pos = facialFeatures[0].part(34)(1);
+					}
+					int current_Y_Pos = facialFeatures[0].part(34)(1);
+					tempDistance = current_Y_Pos -base_Y_Pos ;
+					if (tempDistance > 5) {
+						ori_Distance = tempDistance/5;
+					}
+
+					//Place holder for now
+					prev_y = current_Y_Pos;
+				}
+				//Confidence level calculation
+			confidence_Level += (tempDistance*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
+			}
+			
 			//Make sure it doesn't exceed the bounds
 			if (confidence_Level < 0) {
 				confidence_Level = 0;
@@ -243,7 +289,11 @@ int main() {
 			awindow.set_image(cimg);
 			awindow.add_overlay(render_face_detections(facialFeatures));
 			rectangle rect;
-			awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
+			if (desiredConfMethod == 2)
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(offsetFromBase)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
+			else if (desiredConfMethod == 1)
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
+
 		}
 	}
 	catch (serialization_error& e) {
