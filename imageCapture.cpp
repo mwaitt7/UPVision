@@ -9,6 +9,8 @@
 #include <math.h>
 #include <utility>
 #include <cmath>
+#include <fstream>
+#include <ctime>
 #include "dlib-19.9/dlib/opencv.h"
 #include <opencv2/highgui/highgui.hpp>
 #include "dlib-19.9/dlib/image_processing/frontal_face_detector.h"
@@ -294,6 +296,29 @@ int main() {
 			else if (desiredConfMethod == 1)
 				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
 
+			//writes the output to a file with a timestamp
+			time_t now = time(0);
+			tm *currTime = localtime(&now);
+			int hour = currTime->tm_hour;
+			int min = currTime->tm_min;
+			int sec = currTime->tm_sec;
+			ofstream file;
+			
+			file.open("output.txt",ofstream::out | ofstream::app);
+			
+			if(confidence_Level > 0) {
+				file << "###############################################" << endl;
+				file << to_string(hour) << ":" << to_string(min) << ":" << to_string(sec) << endl;
+				file << "Head Orientation: " << std::to_string(headAngle) << endl;
+				file << "FPS: " << std::to_string(fps) << " frames/sec" << endl;
+				file << "EAR: " << std::to_string(EAR) << endl;
+				file << "Blink Duartion: " << std::to_string(blink_dur) << " sec" << endl;
+				file << "Y dist from base: " << std::to_string(offsetFromBase) << endl;
+				file << "Confidence Level: " << std::to_string(confidence_Level) << endl;
+				file << "###############################################" << endl; 
+			}
+			
+			file.close();
 		}
 	}
 	catch (serialization_error& e) {
