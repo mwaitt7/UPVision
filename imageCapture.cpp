@@ -9,8 +9,6 @@
 #include <math.h>
 #include <utility>
 #include <cmath>
-#include <fstream>
-#include <ctime>
 #include "dlib-19.9/dlib/opencv.h"
 #include <opencv2/highgui/highgui.hpp>
 #include "dlib-19.9/dlib/image_processing/frontal_face_detector.h"
@@ -29,17 +27,17 @@ const float HEAD_ORIENTATION_CONFIDENCE_WEIGTH = 0.20;
 const float EYE_CLOSED_CONFIDENCE_WEIGHT = 0.18;
 
 std::vector<full_object_detection> facialFeatures;
-int base_Y_Pos = 0;
+float base_Y_Pos = 0;
 int prev_y = 0;
 float confidence_Level = 0.0;
 int UI_R = 0;
 int UI_G = 255;
 int UI_B = 0;
-bool distanceInitialized = false; 
-int desiredConfMethod = 2; //Testing
+bool distanceInitialized = false;
+int desiredConfMethod = 1; //Testing
 double offsetFromBase = 0;
-int tempDistance = 0;
-
+float tempDistance = 0;
+int PRINT_TO_FILE = 0;
 int main() {
 	try {
 		cv::VideoCapture cap(0);
@@ -179,7 +177,7 @@ int main() {
 					//below EYE_THRESHOLD, increase the number of blinks.
 					//if (counter >= EYE_CONSECUTIVE_FRAMES) {
 					//	blink_dur = timeElapsed - starttime2;
-						//totalBlinks++;		
+					//totalBlinks++;		
 					//}
 					eye_Is_Closed = false;
 					starttime2 = timeElapsed;
@@ -193,24 +191,21 @@ int main() {
 				blink_dur = 0;
 			}
 
-			if(desiredConfMethod == 2) {
+			if (desiredConfMethod == 2) {
 				/*
-					CONFIDENCE LEVEL TESTING - METHOD #2: NOSE DISTANCE
-
-					Sets a baseline for distance between point 31-34 in y-direction,
-					then checks the offset from the current distance from the baseline.
-
-					TODO: can make this better by doing same calculation with distance
-					from point 20->38, and 25->45. 
-
-					If that offset is negative => looking down, sleepy
-					If positive => looking up, alert
+				CONFIDENCE LEVEL TESTING - METHOD #2: NOSE DISTANCE
+				Sets a baseline for distance between point 31-34 in y-direction,
+				then checks the offset from the current distance from the baseline.
+				TODO: can make this better by doing same calculation with distance
+				from point 20->38, and 25->45.
+				If that offset is negative => looking down, sleepy
+				If positive => looking up, alert
 				*/
 				double baseDistance = 0;
 				offsetFromBase = 0;
 				if (facialFeatures.size() != 0) {
 					//Get baseline
-					if(!distanceInitialized) {
+					if (!distanceInitialized) {
 						baseDistance = facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1);
 						distanceInitialized = true;
 					}
@@ -218,7 +213,7 @@ int main() {
 						//Is this distance shorter than the baseline? (This means nodding off)
 						double tempDistance = facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1);
 						offsetFromBase = tempDistance - baseDistance;
-						
+
 						if (offsetFromBase <= 0) {
 							//Flip the sign for use in calculations
 							offsetFromBase = 0 - offsetFromBase;
@@ -231,40 +226,40 @@ int main() {
 
 			//Head Orientation Stuff
 			float headAngle = 0;
-			int x1 = facialFeatures[0].part(0)(0);
-			int x2 = facialFeatures[0].part(16)(0);
-
-			int y1 = facialFeatures[0].part(0)(1);
-			int y2 = facialFeatures[0].part(16)(1);
-			headAngle = atan2(y1 - y2, x1 - x2);
-			headAngle = headAngle * 180 / M_PI;
 
 
-			if(desiredConfMethod == 1) {
+
+			if (desiredConfMethod == 1) {
 				/*
-					Confidence level calculation - Method #1: Nose Y-Pos
+				Confidence level calculation - Method #1: Nose Y-Pos
 				*/
 				tempDistance = 0;
-				int ori_Distance = 0;
+				float ori_Distance = 0;
 				//If there's a face in frame, check angle
 				if (facialFeatures.size() != 0) {
-					//Check for base line
-					if (base_Y_Pos == 0) {
-						base_Y_Pos = facialFeatures[0].part(34)(1);
-					}
-					int current_Y_Pos = facialFeatures[0].part(34)(1);
-					tempDistance = current_Y_Pos -base_Y_Pos ;
-					if (tempDistance > 5) {
-						ori_Distance = tempDistance/5;
-					}
+					int x1 = facialFeatures[0].part(0)(0);
+					int x2 = facialFeatures[0].part(16)(0);
 
+					int y1 = facialFeatures[0].part(0)(1);
+					int y2 = facialFeatures[0].part(16)(1);
+					headAngle = atan2(y1 - y2, x1 - x2);
+					headAngle = headAngle * 180 / M_PI;
+					//Check for base line
+					
+					base_Y_Pos = (faces[0].top()+faces[0].bottom())/2;
+					
+					float current_Y_Pos = (facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1));
+					tempDistance = current_Y_Pos/faces[0].area();
+					if (tempDistance > 0.00015 ) {
+						ori_Distance =2.5;
+					}
 					//Place holder for now
 					prev_y = current_Y_Pos;
 				}
 				//Confidence level calculation
-			confidence_Level += (tempDistance*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
+				confidence_Level += (ori_Distance*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
 			}
-			
+
 			//Make sure it doesn't exceed the bounds
 			if (confidence_Level < 0) {
 				confidence_Level = 0;
@@ -291,34 +286,44 @@ int main() {
 			awindow.set_image(cimg);
 			awindow.add_overlay(render_face_detections(facialFeatures));
 			rectangle rect;
-			if (desiredConfMethod == 2)
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(offsetFromBase)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
-			else if (desiredConfMethod == 1)
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur)+ "\nDISTANCE OF Y FROM BASE :" +std::to_string(tempDistance)+ "\nConfidence Level :" +std::to_string(confidence_Level)));
-
-			//writes the output to a file with a timestamp
-			time_t now = time(0);
-			tm *currTime = localtime(&now);
-			int hour = currTime->tm_hour;
-			int min = currTime->tm_min;
-			int sec = currTime->tm_sec;
-			ofstream file;
-			
-			file.open("output.txt",ofstream::out | ofstream::app);
-			
-			if(confidence_Level > 0) {
-				file << "###############################################" << endl;
-				file << to_string(hour) << ":" << to_string(min) << ":" << to_string(sec) << endl;
-				file << "Head Orientation: " << std::to_string(headAngle) << endl;
-				file << "FPS: " << std::to_string(fps) << " frames/sec" << endl;
-				file << "EAR: " << std::to_string(EAR) << endl;
-				file << "Blink Duartion: " << std::to_string(blink_dur) << " sec" << endl;
-				file << "Y dist from base: " << std::to_string(offsetFromBase) << endl;
-				file << "Confidence Level: " << std::to_string(confidence_Level) << endl;
-				file << "###############################################" << endl; 
+			rectangle rem;
+			if (desiredConfMethod == 2) {
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(offsetFromBase) + "\nConfidence Level :" + std::to_string(confidence_Level)));
 			}
-			
-			file.close();
+			else if (desiredConfMethod == 1) {
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(tempDistance) + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				if (faces.size() > 0) {
+					awindow.add_overlay(faces[0]);
+				}
+			}
+			if (PRINT_TO_FILE > 0) {
+
+				//writes the output to a file with a timestamp
+				time_t now = time(0);
+				tm *currTime = localtime(&now);
+				int hour = currTime->tm_hour;
+				int min = currTime->tm_min;
+				int sec = currTime->tm_sec;
+				ofstream file;
+
+				file.open("output.txt", ofstream::out | ofstream::app);
+
+				if (confidence_Level > 0) {
+					file << "###############################################" << endl;
+					file << to_string(hour) << ":" << to_string(min) << ":" << to_string(sec) << endl;
+					file << "Head Orientation: " << std::to_string(headAngle) << endl;
+					file << "FPS: " << std::to_string(fps) << " frames/sec" << endl;
+					file << "EAR: " << std::to_string(EAR) << endl;
+					file << "Blink Duartion: " << std::to_string(blink_dur) << " sec" << endl;
+					file << "Y dist from base: " << std::to_string(offsetFromBase) << endl;
+					file << "Confidence Level: " << std::to_string(confidence_Level) << endl;
+					file << "###############################################" << endl;
+
+				}
+
+
+				file.close();
+			}
 		}
 	}
 	catch (serialization_error& e) {
