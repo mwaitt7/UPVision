@@ -41,11 +41,12 @@ int desiredConfMethod = 1; //Testing
 double offsetFromBase = 0;
 float tempDistance = 0;
 int PRINT_TO_FILE = 0;
+
+
 int main() {
 	try {
 		cv::VideoCapture cap(0);
 		cv::Mat frame;
-
 		/*
 		//uncomment to use for raspberry pi camera
 		raspicam::RaspiCam_Cv cap;
@@ -88,8 +89,6 @@ int main() {
 		bool eye_Is_Closed = false;
 		while (!awindow.is_closed()) {
 			
-			Mat grayscale;
-        		cvtColor(frame, grayscale, CV_RGB2GRAY);
 			/*
 			//uncomment to use for raspberry pi camera
 			cap.grab();
@@ -256,7 +255,7 @@ int main() {
 					
 					float current_Y_Pos = (facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1));
 					tempDistance = current_Y_Pos/faces[0].area();
-					if (tempDistance > 0.00015 ) {
+					if (tempDistance > 0.00010 ) {
 						ori_Distance =2.5;
 					}
 					//Place holder for now

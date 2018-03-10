@@ -1,0 +1,6 @@
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/CMakeFiles/imageCapture.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/dlib_build/CMakeFiles/rebuild_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/dlib_build/CMakeFiles/edit_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/cmake-build-debug/dlib_build/CMakeFiles/dlib.dir
