@@ -9,6 +9,8 @@
 #include <math.h>
 #include <utility>
 #include <cmath>
+#include <ctime>
+#include <fstream>
 #include "dlib-19.9/dlib/opencv.h"
 #include <opencv2/highgui/highgui.hpp>
 #include "dlib-19.9/dlib/image_processing/frontal_face_detector.h"
@@ -22,6 +24,7 @@
 
 using namespace dlib;
 using namespace std;
+using namespace cv;
 
 const float HEAD_ORIENTATION_CONFIDENCE_WEIGTH = 0.20;
 const float EYE_CLOSED_CONFIDENCE_WEIGHT = 0.18;
@@ -84,6 +87,9 @@ int main() {
 		double timeElapsed;
 		bool eye_Is_Closed = false;
 		while (!awindow.is_closed()) {
+			
+			Mat grayscale;
+        		cvtColor(frame, grayscale, CV_RGB2GRAY);
 			/*
 			//uncomment to use for raspberry pi camera
 			cap.grab();
