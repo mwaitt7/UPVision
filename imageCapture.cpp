@@ -9,14 +9,13 @@
 #include <math.h>
 #include <utility>
 #include <cmath>
-#include <ctime>
-#include <fstream>
 #include "dlib-19.9/dlib/opencv.h"
 #include <opencv2/highgui/highgui.hpp>
 #include "dlib-19.9/dlib/image_processing/frontal_face_detector.h"
 #include "dlib-19.9/dlib/image_processing/render_face_detections.h"
 #include "dlib-19.9/dlib/image_processing.h"
 #include "dlib-19.9/dlib/gui_widgets.h"
+#include <opencv2/calib3d/calib3d.hpp>
 /*
 //uncomment to use for raspberry pi camera
 #include "raspicam/raspicam_cv.h"
@@ -24,10 +23,18 @@
 
 using namespace dlib;
 using namespace std;
-using namespace cv;
 
 const float HEAD_ORIENTATION_CONFIDENCE_WEIGTH = 0.20;
 const float EYE_CLOSED_CONFIDENCE_WEIGHT = 0.18;
+
+
+
+
+cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
+{
+	cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) << focal_length, 0, center_point.x, 0, focal_length, center_point.y, 0, 0, 1);
+	return camera_matrix;
+}
 
 std::vector<full_object_detection> facialFeatures;
 float base_Y_Pos = 0;
@@ -37,16 +44,15 @@ int UI_R = 0;
 int UI_G = 255;
 int UI_B = 0;
 bool distanceInitialized = false;
-int desiredConfMethod = 1; //Testing
+int desiredConfMethod = 3; //Testing
 double offsetFromBase = 0;
 float tempDistance = 0;
 int PRINT_TO_FILE = 0;
-
-
 int main() {
 	try {
 		cv::VideoCapture cap(0);
 		cv::Mat frame;
+
 		/*
 		//uncomment to use for raspberry pi camera
 		raspicam::RaspiCam_Cv cap;
@@ -75,6 +81,55 @@ int main() {
 		std::clock_t start;
 		double duration;
 
+
+		//fill in 3D ref points(world coordinates), model referenced from http://aifi.isr.uc.pt/Downloads/OpenGL/glAnthropometric3DModel.cpp
+		std::vector<cv::Point3d> object_pts;
+		object_pts.push_back(cv::Point3d(6.825897, 6.760612, 4.402142));     //#33 left brow left corner
+		object_pts.push_back(cv::Point3d(1.330353, 7.122144, 6.903745));     //#29 left brow right corner
+		object_pts.push_back(cv::Point3d(-1.330353, 7.122144, 6.903745));    //#34 right brow left corner
+		object_pts.push_back(cv::Point3d(-6.825897, 6.760612, 4.402142));    //#38 right brow right corner
+		object_pts.push_back(cv::Point3d(5.311432, 5.485328, 3.987654));     //#13 left eye left corner
+		object_pts.push_back(cv::Point3d(1.789930, 5.393625, 4.413414));     //#17 left eye right corner
+		object_pts.push_back(cv::Point3d(-1.789930, 5.393625, 4.413414));    //#25 right eye left corner
+		object_pts.push_back(cv::Point3d(-5.311432, 5.485328, 3.987654));    //#21 right eye right corner
+		object_pts.push_back(cv::Point3d(2.005628, 1.409845, 6.165652));     //#55 nose left corner
+		object_pts.push_back(cv::Point3d(-2.005628, 1.409845, 6.165652));    //#49 nose right corner
+		object_pts.push_back(cv::Point3d(2.774015, -2.080775, 5.048531));    //#43 mouth left corner
+		object_pts.push_back(cv::Point3d(-2.774015, -2.080775, 5.048531));   //#39 mouth right corner
+		object_pts.push_back(cv::Point3d(0.000000, -3.116408, 6.097667));    //#45 mouth central bottom corner
+		object_pts.push_back(cv::Point3d(0.000000, -7.415691, 4.070434)); //#6 chin corner
+
+		//our 2D image points 
+		std::vector<cv::Point2d> image_pts;
+		//Rotations (to get x y and z)
+		cv::Mat rotation_vector;
+		cv::Mat rotation_matrix;
+		cv::Mat translation_vector;
+		cv::Mat position_matrix = cv::Mat(3, 4, CV_64FC1);    
+		cv::Mat euler_angle = cv::Mat(3, 1, CV_64FC1);
+
+		//temp buf for decomposeProjectionMatrix()
+		cv::Mat out_intrinsics = cv::Mat(3, 3, CV_64FC1);
+		cv::Mat out_rotation = cv::Mat(3, 3, CV_64FC1);
+		cv::Mat out_translation = cv::Mat(3, 1, CV_64FC1);
+
+
+		//reproject 3D points world coordinate axis 
+		std::vector<cv::Point3d> reprojectsrc;
+		reprojectsrc.push_back(cv::Point3d(10.0, 10.0, 10.0));
+		reprojectsrc.push_back(cv::Point3d(10.0, 10.0, -10.0));
+		reprojectsrc.push_back(cv::Point3d(10.0, -10.0, -10.0));
+		reprojectsrc.push_back(cv::Point3d(10.0, -10.0, 10.0));
+		reprojectsrc.push_back(cv::Point3d(-10.0, 10.0, 10.0));
+		reprojectsrc.push_back(cv::Point3d(-10.0, 10.0, -10.0));
+		reprojectsrc.push_back(cv::Point3d(-10.0, -10.0, -10.0));
+		reprojectsrc.push_back(cv::Point3d(-10.0, -10.0, 10.0));
+
+		//reprojected 2D points
+		std::vector<cv::Point2d> reprojectdst;
+		reprojectdst.resize(8);
+
+
 		//Used for eye blinking
 		double EYE_THRESHOLD = 0.25; //indicates a blink when EAR is below this value
 		double EYE_CONSECUTIVE_FRAMES = 2; //the # of consecutive frames the eye must be below threshold
@@ -87,8 +142,11 @@ int main() {
 		std::clock_t begin;
 		double timeElapsed;
 		bool eye_Is_Closed = false;
+		std::vector<rectangle> temp;
+		int change_In_X = 0;
+		int change_In_Y = 0;
+		bool flag1 = true;
 		while (!awindow.is_closed()) {
-			
 			/*
 			//uncomment to use for raspberry pi camera
 			cap.grab();
@@ -114,10 +172,31 @@ int main() {
 			if (!cap.read(frame)) {
 				break;
 			}
-
+			// Camera matrix caluclations (we approximate that it doesn't have any distortiona and that the focal length is the width)
+			double focal_length = frame.cols; 
+			cv::Point2d center_point = cv::Point2d(frame.cols / 2, frame.rows / 2);
+			cv::Mat camera_matrix = get_camera_matrix(focal_length,center_point);
+			cv::Mat dist_coeffs = cv::Mat::zeros(4, 1, cv::DataType<double>::type); // Assuming no lens distortion
 			cv_image<bgr_pixel> cimg(frame);
+			//Assume no distortion
+			cv::Mat distortion = cv::Mat::zeros(4, 1, cv::DataType<double>::type);
+
+
+
 
 			std::vector<rectangle> faces = detector(cimg);
+			if (flag1) {
+				temp = faces;
+				flag1 = false;
+			}
+			if (faces.size() == 0) {
+				faces = temp;
+				
+			}
+			if (faces.size() > 0) {
+				change_In_X = temp[0].left() - faces[0].left();
+				change_In_Y = temp[0].top() - faces[0].top();
+			}
 			facialFeatures.clear();
 			for (unsigned long i = 0; i < faces.size(); ++i) {
 				facialFeatures.push_back(pose_model(cimg, faces[i]));
@@ -191,10 +270,51 @@ int main() {
 			}
 			if (eye_Is_Closed) {
 				blink_dur = timeElapsed - starttime2;
+				blink_dur = blink_dur * 2;
 			}
 			else {
+
 				blink_dur = 0;
 			}
+
+
+
+
+			if (desiredConfMethod == 3) {
+				if (facialFeatures.size() != 0) {
+
+					//Fill the coordinates from facial detection
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(17).x(), facialFeatures[0].part(17).y())); // 17 is the left corner of the left brow
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(21).x(), facialFeatures[0].part(21).y())); // 21 is the right corner of the left brow
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(22).x(), facialFeatures[0].part(22).y())); // 22 is the left corner of the right brow
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(26).x(), facialFeatures[0].part(26).y())); // 26 is the right corner of the right brow
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(36).x(), facialFeatures[0].part(36).y())); // 36 is the left corner of the left eye
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(39).x(), facialFeatures[0].part(39).y())); // 39 is the right corner of the left eye
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(42).x(), facialFeatures[0].part(42).y())); // 42 is the left corner of the right eye
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(45).x(), facialFeatures[0].part(45).y())); // 45 is the right corner of the right eye
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(31).x(), facialFeatures[0].part(31).y())); // 31 is the left corner of the nose
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(35).x(), facialFeatures[0].part(35).y())); // 35 is the right corner of the nose
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(48).x(), facialFeatures[0].part(48).y())); // 48 is the left corner of the mouth
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(54).x(), facialFeatures[0].part(54).y())); // 54 is the right corner of the mouth
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(57).x(), facialFeatures[0].part(57).y())); // 57 is bottom center of the mouth
+					image_pts.push_back(cv::Point2d(facialFeatures[0].part(8).x(), facialFeatures[0].part(8).y()));   // 8 is the tip of the chin
+					//Calculate the position of the 3D model.
+					cv::solvePnP(object_pts, image_pts, camera_matrix, dist_coeffs, rotation_vector, translation_vector);
+
+					//Calculate euler's angle (basically the XYZ)
+					cv::Rodrigues(rotation_vector, rotation_matrix); //Converts rotation vector to a matrix
+					cv::hconcat(rotation_matrix, translation_vector, position_matrix); // horizontal concatination
+					cv::decomposeProjectionMatrix(position_matrix, out_intrinsics, out_rotation, out_translation, cv::noArray(), cv::noArray(), cv::noArray(), euler_angle);
+				}
+				offsetFromBase = 0;
+				if (euler_angle.at<double>(0) > 10) {
+					offsetFromBase = euler_angle.at<double>(0)-10;
+				}
+
+				confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
+				
+			}
+
 
 			if (desiredConfMethod == 2) {
 				/*
@@ -229,10 +349,6 @@ int main() {
 				confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
 			}
 
-			//Head Orientation Stuff
-			float headAngle = 0;
-
-
 
 			if (desiredConfMethod == 1) {
 				/*
@@ -242,21 +358,12 @@ int main() {
 				float ori_Distance = 0;
 				//If there's a face in frame, check angle
 				if (facialFeatures.size() != 0) {
-					int x1 = facialFeatures[0].part(0)(0);
-					int x2 = facialFeatures[0].part(16)(0);
+					base_Y_Pos = (facialFeatures[0].part(8)(1) + facialFeatures[0].part(22)(1)) / 2;
 
-					int y1 = facialFeatures[0].part(0)(1);
-					int y2 = facialFeatures[0].part(16)(1);
-					headAngle = atan2(y1 - y2, x1 - x2);
-					headAngle = headAngle * 180 / M_PI;
-					//Check for base line
-					
-					base_Y_Pos = (faces[0].top()+faces[0].bottom())/2;
-					
-					float current_Y_Pos = (facialFeatures[0].part(34)(1) - facialFeatures[0].part(31)(1));
-					tempDistance = current_Y_Pos/faces[0].area();
-					if (tempDistance > 0.00010 ) {
-						ori_Distance =2.5;
+					float current_Y_Pos = (facialFeatures[0].part(57)(1)-facialFeatures[0].part(33)(1));
+					tempDistance = current_Y_Pos / faces[0].area();
+					if (tempDistance >0.0035 ) {
+						ori_Distance = 10;
 					}
 					//Place holder for now
 					prev_y = current_Y_Pos;
@@ -292,14 +399,22 @@ int main() {
 			awindow.add_overlay(render_face_detections(facialFeatures));
 			rectangle rect;
 			rectangle rem;
+			temp = faces;
 			if (desiredConfMethod == 2) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(offsetFromBase) + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(offsetFromBase) + "\nConfidence Level :" + std::to_string(confidence_Level)));
 			}
 			else if (desiredConfMethod == 1) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "UPVision v1.0 *ALPHA*\n\nHEAD ORIENTATION: " + std::to_string(headAngle) + " degrees\nFRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(tempDistance) + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(tempDistance) + "\nConfidence Level :" + std::to_string(confidence_Level)));
 				if (faces.size() > 0) {
 					awindow.add_overlay(faces[0]);
 				}
+			}
+			else if (desiredConfMethod == 3) {
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nEYE ASPECT RATIO: " + std::to_string(EAR) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1))+ "\nZ :" + std::to_string(euler_angle.at<double>(2))  + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				if (faces.size() > 0) {
+					awindow.add_overlay(faces[0]);
+				}
+				image_pts.clear();
 			}
 			if (PRINT_TO_FILE > 0) {
 
@@ -316,7 +431,6 @@ int main() {
 				if (confidence_Level > 0) {
 					file << "###############################################" << endl;
 					file << to_string(hour) << ":" << to_string(min) << ":" << to_string(sec) << endl;
-					file << "Head Orientation: " << std::to_string(headAngle) << endl;
 					file << "FPS: " << std::to_string(fps) << " frames/sec" << endl;
 					file << "EAR: " << std::to_string(EAR) << endl;
 					file << "Blink Duartion: " << std::to_string(blink_dur) << " sec" << endl;
