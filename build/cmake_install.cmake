@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Michael/Dropbox/Señor/Capstone/UPVision
+# Install script for directory: /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

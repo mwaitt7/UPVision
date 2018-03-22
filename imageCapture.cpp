@@ -58,8 +58,10 @@ int main() {
 		raspicam::RaspiCam_Cv cap;
 		*/
 
-		cap.set(CV_CAP_PROP_FRAME_WIDTH, 480);
-		cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+		// cap.set(CV_CAP_PROP_FRAME_WIDTH, 480);
+		// cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+		cap.set(3,640);
+		cap.set(4,480);
 
 		// Michael changed this to isOpened() to fix compiler errors
 		// if (!cap.open()) {

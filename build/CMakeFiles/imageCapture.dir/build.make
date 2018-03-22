@@ -43,7 +43,7 @@ RM = /usr/local/Cellar/cmake/3.9.5/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision
+CMAKE_SOURCE_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
@@ -57,82 +57,84 @@ include CMakeFiles/imageCapture.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/imageCapture.dir/flags.make
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.o: CMakeFiles/imageCapture.dir/flags.make
-CMakeFiles/imageCapture.dir/imageCapture.cpp.o: ../imageCapture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imageCapture.dir/imageCapture.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageCapture.dir/imageCapture.cpp.o -c /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o: CMakeFiles/imageCapture.dir/flags.make
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o: /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o -c /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageCapture.dir/imageCapture.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp > CMakeFiles/imageCapture.dir/imageCapture.cpp.i
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp > CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageCapture.dir/imageCapture.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp -o CMakeFiles/imageCapture.dir/imageCapture.cpp.s
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp -o CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.o.requires:
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.requires:
 
-.PHONY : CMakeFiles/imageCapture.dir/imageCapture.cpp.o.requires
+.PHONY : CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.requires
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.o.provides: CMakeFiles/imageCapture.dir/imageCapture.cpp.o.requires
-	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/imageCapture.cpp.o.provides.build
-.PHONY : CMakeFiles/imageCapture.dir/imageCapture.cpp.o.provides
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.provides: CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.requires
+	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.provides.build
+.PHONY : CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.provides
 
-CMakeFiles/imageCapture.dir/imageCapture.cpp.o.provides.build: CMakeFiles/imageCapture.dir/imageCapture.cpp.o
+CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.provides.build: CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o
 
 
 # Object files for target imageCapture
 imageCapture_OBJECTS = \
-"CMakeFiles/imageCapture.dir/imageCapture.cpp.o"
+"CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o"
 
 # External object files for target imageCapture
 imageCapture_EXTERNAL_OBJECTS =
 
-imageCapture: CMakeFiles/imageCapture.dir/imageCapture.cpp.o
+imageCapture: CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o
 imageCapture: CMakeFiles/imageCapture.dir/build.make
-imageCapture: /usr/local/lib/libopencv_stitching.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_superres.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_videostab.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_aruco.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_bgsegm.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_bioinspired.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_ccalib.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_dpm.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_face.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_fuzzy.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_img_hash.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_line_descriptor.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_optflow.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_reg.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_rgbd.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_saliency.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_stereo.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_structured_light.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_surface_matching.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_tracking.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_xfeatures2d.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_ximgproc.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_xobjdetect.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_xphoto.3.3.1.dylib
+imageCapture: /usr/local/lib/libopencv_stitching.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_superres.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_videostab.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_aruco.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_bgsegm.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_bioinspired.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_ccalib.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_dnn_objdetect.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_dpm.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_face.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_fuzzy.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_hfs.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_img_hash.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_line_descriptor.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_optflow.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_reg.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_rgbd.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_saliency.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_stereo.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_structured_light.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_surface_matching.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_tracking.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_xfeatures2d.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_ximgproc.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_xobjdetect.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_xphoto.3.4.1.dylib
 imageCapture: dlib_build/libdlib.a
-imageCapture: /usr/local/lib/libopencv_shape.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_photo.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_calib3d.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_phase_unwrapping.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_video.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_datasets.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_plot.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_text.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_dnn.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_features2d.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_flann.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_highgui.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_ml.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_videoio.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_imgcodecs.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_objdetect.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_imgproc.3.3.1.dylib
-imageCapture: /usr/local/lib/libopencv_core.3.3.1.dylib
+imageCapture: /usr/local/lib/libopencv_shape.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_photo.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_datasets.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_plot.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_text.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_dnn.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_ml.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_video.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_calib3d.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_features2d.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_highgui.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_videoio.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_phase_unwrapping.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_flann.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_imgcodecs.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_objdetect.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_imgproc.3.4.1.dylib
+imageCapture: /usr/local/lib/libopencv_core.3.4.1.dylib
 imageCapture: /opt/X11/lib/libSM.dylib
 imageCapture: /opt/X11/lib/libICE.dylib
 imageCapture: /opt/X11/lib/libX11.dylib
@@ -151,7 +153,7 @@ CMakeFiles/imageCapture.dir/build: imageCapture
 
 .PHONY : CMakeFiles/imageCapture.dir/build
 
-CMakeFiles/imageCapture.dir/requires: CMakeFiles/imageCapture.dir/imageCapture.cpp.o.requires
+CMakeFiles/imageCapture.dir/requires: CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o.requires
 
 .PHONY : CMakeFiles/imageCapture.dir/requires
 
@@ -160,6 +162,6 @@ CMakeFiles/imageCapture.dir/clean:
 .PHONY : CMakeFiles/imageCapture.dir/clean
 
 CMakeFiles/imageCapture.dir/depend:
-	cd /Users/Michael/Dropbox/Señor/Capstone/UPVision/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/Michael/Dropbox/Señor/Capstone/UPVision /Users/Michael/Dropbox/Señor/Capstone/UPVision /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles/imageCapture.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/Michael/Dropbox/Señor/Capstone/UPVision/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build /Users/Michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles/imageCapture.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/imageCapture.dir/depend
 

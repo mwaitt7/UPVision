@@ -337,7 +337,7 @@ DLIB_PNG_SUPPORT:BOOL=ON
 //Disable this if you don't want to use a BLAS library
 DLIB_USE_BLAS:BOOL=ON
 
-//Disable this if you don't want to use NVIDIA CUDA
+//Disable this if you don't want to use a BLAS library
 DLIB_USE_CUDA:STRING=OFF
 
 //Disable this if you don't want to use a LAPACK library
@@ -380,7 +380,7 @@ USE_AVX_INSTRUCTIONS:BOOL=OFF
 USE_SSE2_INSTRUCTIONS:BOOL=OFF
 
 //Compile your program with SSE4 instructions
-USE_SSE4_INSTRUCTIONS:BOOL=ON
+USE_SSE4_INSTRUCTIONS:BOOL=OFF
 
 //Path to a file.
 X11_ICE_INCLUDE_PATH:PATH=/opt/X11/include
@@ -593,7 +593,7 @@ dlib_SOURCE_DIR:STATIC=/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.
 imageCapture_BINARY_DIR:STATIC=/Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 
 //Value Computed by CMake
-imageCapture_SOURCE_DIR:STATIC=/Users/Michael/Dropbox/Señor/Capstone/UPVision
+imageCapture_SOURCE_DIR:STATIC=/Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 
 //Path to a library.
 lapack_lib:FILEPATH=/usr/lib/liblapack.dylib
@@ -743,7 +743,7 @@ CMAKE_HAVE_REMOVE:INTERNAL=1
 CMAKE_HAVE_SHMAT:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/Users/Michael/Dropbox/Señor/Capstone/UPVision
+CMAKE_HOME_DIRECTORY:INTERNAL=/Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR
@@ -899,7 +899,7 @@ CUDA_parse_cubin:INTERNAL=/usr/local/Cellar/cmake/3.9.5/share/cmake/Modules/Find
 //Location of run_nvcc.cmake
 CUDA_run_nvcc:INTERNAL=/usr/local/Cellar/cmake/3.9.5/share/cmake/Modules/FindCUDA/run_nvcc.cmake
 //Details about finding OpenCV
-FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.3.1()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.4.1()]
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/local/bin/pkg-config][v0.29.2()]
 //Details about finding Threads
@@ -956,8 +956,6 @@ LAPACK_REFERENCE_lapack_VERSION:INTERNAL=
 LIBJPEG_IS_GOOD:INTERNAL=1
 //Have function png_create_read_struct
 LIBPNG_IS_GOOD:INTERNAL=1
-//Have function sgetrf_single
-OPENBLAS_HAS_LAPACK:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PNG_LIBRARY_DEBUG

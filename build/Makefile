@@ -48,7 +48,7 @@ RM = /usr/local/Cellar/cmake/3.9.5/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision
+CMAKE_SOURCE_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
@@ -136,32 +136,32 @@ dlib/fast:
 	$(MAKE) -f dlib_build/CMakeFiles/dlib.dir/build.make dlib_build/CMakeFiles/dlib.dir/build
 .PHONY : dlib/fast
 
-imageCapture.o: imageCapture.cpp.o
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.o: Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o
 
-.PHONY : imageCapture.o
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.o
 
 # target to build an object file
-imageCapture.cpp.o:
-	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/imageCapture.cpp.o
-.PHONY : imageCapture.cpp.o
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o:
+	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o
 
-imageCapture.i: imageCapture.cpp.i
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.i: Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i
 
-.PHONY : imageCapture.i
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.i
 
 # target to preprocess a source file
-imageCapture.cpp.i:
-	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/imageCapture.cpp.i
-.PHONY : imageCapture.cpp.i
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i:
+	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.i
 
-imageCapture.s: imageCapture.cpp.s
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.s: Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s
 
-.PHONY : imageCapture.s
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.s
 
 # target to generate assembly for a file
-imageCapture.cpp.s:
-	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/imageCapture.cpp.s
-.PHONY : imageCapture.cpp.s
+Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s:
+	$(MAKE) -f CMakeFiles/imageCapture.dir/build.make CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s
+.PHONY : Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.s
 
 # Help Target
 help:
@@ -173,9 +173,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... imageCapture"
 	@echo "... dlib"
-	@echo "... imageCapture.o"
-	@echo "... imageCapture.i"
-	@echo "... imageCapture.s"
+	@echo "... Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.o"
+	@echo "... Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.i"
+	@echo "... Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.s"
 .PHONY : help
 
 
