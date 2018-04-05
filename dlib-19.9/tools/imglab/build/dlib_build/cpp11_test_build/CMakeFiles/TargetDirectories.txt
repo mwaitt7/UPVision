@@ -1,0 +1,3 @@
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/tools/imglab/build/dlib_build/cpp11_test_build/CMakeFiles/rebuild_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/tools/imglab/build/dlib_build/cpp11_test_build/CMakeFiles/edit_cache.dir
+/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/tools/imglab/build/dlib_build/cpp11_test_build/CMakeFiles/cpp11_test.dir

@@ -28,6 +28,7 @@ using namespace std;
 
 const float HEAD_ORIENTATION_CONFIDENCE_WEIGTH = 0.20;
 const float EYE_CLOSED_CONFIDENCE_WEIGHT = 0.18;
+const float ACTIVITY_LEVEL_WEIGHT = 0.2;
 
 
 std::vector<full_object_detection> facialFeatures; //Contains the landmark values.
@@ -336,6 +337,7 @@ int main() {
 		int change_In_X = 0;
 		int change_In_Y = 0;
 		bool flag1 = true;
+		int personIsStill = 0;
 
 		//=========Face detection Improvment Algorithm END =======
 		while (!awindow.is_closed()) {
@@ -392,6 +394,14 @@ int main() {
 			if (faces.size() > 0) {
 				change_In_X = temp[0].left() - faces[0].left();
 				change_In_Y = temp[0].top() - faces[0].top();
+
+				//Activity calculation
+				if ((abs(change_In_X) < 20) && abs(change_In_Y) < 20) {
+					personIsStill = 1;
+				}
+				else {
+					personIsStill = 0;
+				}
 			}
 			facialFeatures.clear();
 			for (unsigned long i = 0; i < faces.size(); ++i) {
@@ -404,7 +414,7 @@ int main() {
 			offsetFromBase = get_offset_from_base(faces, image_pts, object_pts, camera_matrix, dist_coeffs, rotation_matrix, rotation_vector, translation_vector, position_matrix, out_intrinsics, out_rotation, out_translation, euler_angle);
 			
 			//Confidence level calculation
-			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT);
+			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
 
 			//Make sure it doesn't exceed the bounds
 			if (confidence_Level < 0) {
@@ -445,7 +455,7 @@ int main() {
 				}
 			}
 			else if (desiredConfMethod == 1) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1))+ "\nZ :" + std::to_string(euler_angle.at<double>(2))  + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1))+ "\nZ :" + std::to_string(euler_angle.at<double>(2))  + "\nConfidence Level :" + std::to_string(confidence_Level) + "\nIs Person Still? :" + std::to_string(personIsStill)));
 				if (faces.size() > 0) {
 					awindow.add_overlay(faces[0]);
 				}
