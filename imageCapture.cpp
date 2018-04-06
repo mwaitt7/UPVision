@@ -2,7 +2,7 @@
 //  imageCapture.cpp
 //
 //	Author: UP Vision Team
-//  Date: 1/24/18
+//  	Date: 1/24/18
 //	Version: Alpha 7
 //	Description: The goal of this class it calculate the drowsiness using a camera.
 //
@@ -18,10 +18,12 @@
 #include "dlib-19.9/dlib/image_processing.h"
 #include "dlib-19.9/dlib/gui_widgets.h"
 #include <opencv2/calib3d/calib3d.hpp>
-/*
-//uncomment to use for raspberry pi camera
+
+#define USE_RP_CAM 1
+
+#if USE_RP_CAM
 #include "raspicam/raspicam_cv.h"
-*/
+#endif
 
 using namespace dlib;
 using namespace std;
@@ -29,7 +31,6 @@ using namespace std;
 const float HEAD_ORIENTATION_CONFIDENCE_WEIGTH = 0.20;
 const float EYE_CLOSED_CONFIDENCE_WEIGHT = 0.18;
 const float ACTIVITY_LEVEL_WEIGHT = 0.2;
-
 
 std::vector<full_object_detection> facialFeatures; //Contains the landmark values.
 float confidence_Level = 0.0;
@@ -255,21 +256,23 @@ double get_offset_from_base(std::vector<rectangle> faces, std::vector<cv::Point2
 int main() {
 	try {
 		//Initialize the video capture and set the camera to the first one
-		cv::VideoCapture cap(0);
-		cv::Mat frame;
-
-		/*
-		//uncomment to use for raspberry pi camera
+#if USE_RP_CAM
 		raspicam::RaspiCam_Cv cap;
-		*/
+#else
+		cv::VideoCapture cap(0);
+#endif
+		cv::Mat frame;
 		
 		//Readjust the resolution of the video camera to speed up processing time.
-		cap.set(CV_CAP_PROP_FRAME_WIDTH, 480);
-		cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+		cap.set(CV_CAP_PROP_FRAME_WIDTH, 480/2);
+		cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240/2);
 
 		// Michael changed this to isOpened() to fix compiler errors
-		// if (!cap.open()) {
+#if USE_RP_CAM
+		if (!cap.open()) {
+#else
 		if (!cap.isOpened()) {
+#endif
 			cerr << "Unable to open camera" << endl;
 			return 1;
 		}
@@ -341,11 +344,11 @@ int main() {
 
 		//=========Face detection Improvment Algorithm END =======
 		while (!awindow.is_closed()) {
-			/*
 			//uncomment to use for raspberry pi camera
+#if USE_RP_CAM
 			cap.grab();
 			cap.retrieve(frame);
-			*/
+#endif			
 
 
 			//FPS Calculation
@@ -365,9 +368,11 @@ int main() {
 			}
 
 			//Face Detection
+#if !USE_RP_CAM			
 			if (!cap.read(frame)) {
 				break;
 			}
+#endif
 
 			// Camera matrix calculations 
 			double focal_length = frame.cols; 
@@ -380,8 +385,9 @@ int main() {
 
 
 
-			
+			std::clock_t faceDetectStart = std::clock();
 			std::vector<rectangle> faces = detector(cimg);
+			double faceDetectTime = std::clock()-faceDetectStart;
 			if (flag1) {
 				temp = faces;
 				flag1 = false;
@@ -411,10 +417,13 @@ int main() {
 			//Find out how long the person's eyes have been closed.
 			blink_dur = get_eyeclosed_duration(facialFeatures, firstTime, begin, starttime2, timeElapsed, eye_Is_Closed, counter);
 			//Find the offsetFromBase
+			std::clock_t getOffsetStart = std::clock();
 			offsetFromBase = get_offset_from_base(faces, image_pts, object_pts, camera_matrix, dist_coeffs, rotation_matrix, rotation_vector, translation_vector, position_matrix, out_intrinsics, out_rotation, out_translation, euler_angle);
-			
+			double getOffsetTime = std::clock()-getOffsetStart;			
+
 			//Confidence level calculation
 			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
+
 
 			//Make sure it doesn't exceed the bounds
 			if (confidence_Level < 0) {
@@ -439,6 +448,7 @@ int main() {
 			}
 
 			//reset the window and redraw everything.
+			std::clock_t renderStart = std::clock();
 			awindow.clear_overlay();
 			awindow.set_image(cimg);
 			awindow.add_overlay(render_face_detections(facialFeatures));
@@ -456,12 +466,16 @@ int main() {
 			}
 			else if (desiredConfMethod == 1) {
 				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1))+ "\nZ :" + std::to_string(euler_angle.at<double>(2))  + "\nConfidence Level :" + std::to_string(confidence_Level) + "\nIs Person Still? :" + std::to_string(personIsStill)));
+
 				if (faces.size() > 0) {
 					awindow.add_overlay(faces[0]);
 				}
 				image_pts.clear();
 			}
+			double renderTime = std::clock()-renderStart;
 
+			
+			cout << "faceDetectTime "<<faceDetectTime/ (double)CLOCKS_PER_SEC <<"s\trenderGUITime " <<renderTime/ (double)CLOCKS_PER_SEC<<"s\tgetOffsetTime "<<getOffsetTime/ (double)CLOCKS_PER_SEC<<"s\n\n"; 
 
 			//Printing result to a file for debugging and training purposes.
 			if (PRINT_TO_FILE > 0) {
