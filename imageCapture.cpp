@@ -19,7 +19,7 @@
 #include "dlib-19.9/dlib/gui_widgets.h"
 #include <opencv2/calib3d/calib3d.hpp>
 
-#define USE_RP_CAM 1
+#define USE_RP_CAM 0
 
 #if USE_RP_CAM
 #include "raspicam/raspicam_cv.h"
@@ -57,10 +57,10 @@ cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
 
 /*
 Method name:get the blinking duration
-Description: This method calculates how long are the eyes closed by looking at the corner of the eyes and the upper and lower eye lids. 
+Description: This method calculates how long are the eyes closed by looking at the corner of the eyes and the upper and lower eye lids.
 Return Paramater:eye_closed_dur (How long have the eyes been closed).
 */
-float get_eyeclosed_duration(std::vector<full_object_detection> facialFeatures, bool& firstTime, std::clock_t &begin, double &starttime2, double &timeElapsed, bool &eye_Is_Closed,int & counter) {
+float get_eyeclosed_duration(std::vector<full_object_detection> facialFeatures, bool& firstTime, std::clock_t &begin, double &starttime2, double &timeElapsed, bool &eye_Is_Closed, int & counter) {
 	//Used for eye blinking
 	float eye_closed_dur = 0.0f;
 	double EAR = 0;
@@ -136,14 +136,14 @@ float get_eyeclosed_duration(std::vector<full_object_detection> facialFeatures, 
 		starttime2 = timeElapsed;
 		counter = 0; //reset counter  
 	}
-	
+
 	if (eye_Is_Closed) {
-	eye_closed_dur = timeElapsed - starttime2;
-	eye_closed_dur = eye_closed_dur * 2;
+		eye_closed_dur = timeElapsed - starttime2;
+		eye_closed_dur = eye_closed_dur * 2;
 	}
 	else {
 
-	eye_closed_dur = 0;
+		eye_closed_dur = 0;
 	}
 	return eye_closed_dur;
 
@@ -153,12 +153,12 @@ float get_eyeclosed_duration(std::vector<full_object_detection> facialFeatures, 
 /*
 Method name:get_offset_from_base
 Description:Calculate the head orientation and output the offset from base. There are three methods for determining the offset the first method converts a 2D image into a 3D model and then calculate the euler rotation angle.
-			The second method calculate the distance from two points in the nose in order to assess the head orientation. The third method relies on the second method but this time with a normalized distance based on the area
-			of the surroanding box.
+The second method calculate the distance from two points in the nose in order to assess the head orientation. The third method relies on the second method but this time with a normalized distance based on the area
+of the surroanding box.
 Return Paramater: the offsetfrombase which represent a distance that is used to calculate the confidence level.
 */
 double get_offset_from_base(std::vector<rectangle> faces, std::vector<cv::Point2d> &image_pts, std::vector<cv::Point3d> &object_pts, cv::Mat camera_matrix, cv::Mat &dist_coeffs, cv::Mat &rotation_matrix, cv::Mat &rotation_vector,
-							cv::Mat &translation_vector, cv::Mat &position_matrix, cv::Mat &out_intrinsics, cv::Mat &out_rotation,cv::Mat &out_translation, cv::Mat &euler_angle) {
+	cv::Mat &translation_vector, cv::Mat &position_matrix, cv::Mat &out_intrinsics, cv::Mat &out_rotation, cv::Mat &out_translation, cv::Mat &euler_angle) {
 	if (desiredConfMethod == 1) {
 		if (facialFeatures.size() != 0) {
 
@@ -190,7 +190,7 @@ double get_offset_from_base(std::vector<rectangle> faces, std::vector<cv::Point2
 			offsetFromBase = euler_angle.at<double>(0) - 10;
 		}
 
-		
+
 
 	}
 
@@ -262,10 +262,10 @@ int main() {
 		cv::VideoCapture cap(0);
 #endif
 		cv::Mat frame;
-		
+
 		//Readjust the resolution of the video camera to speed up processing time.
-		cap.set(CV_CAP_PROP_FRAME_WIDTH, 480/2);
-		cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240/2);
+		cap.set(CV_CAP_PROP_FRAME_WIDTH, 480 / 2);
+		cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240 / 2);
 
 		// Michael changed this to isOpened() to fix compiler errors
 #if USE_RP_CAM
@@ -308,14 +308,14 @@ int main() {
 		object_pts.push_back(cv::Point3d(0.000000, -3.116408, 6.097667));    //#45 mouth central bottom corner
 		object_pts.push_back(cv::Point3d(0.000000, -7.415691, 4.070434)); //#6 chin corner
 
-		
-		//Our 2D image points 
+
+																		  //Our 2D image points 
 		std::vector<cv::Point2d> image_pts;
 		//Rotations (to get x y and z)
 		cv::Mat rotation_vector;
 		cv::Mat rotation_matrix;
 		cv::Mat translation_vector;
-		cv::Mat position_matrix = cv::Mat(3, 4, CV_64FC1);    
+		cv::Mat position_matrix = cv::Mat(3, 4, CV_64FC1);
 		cv::Mat euler_angle = cv::Mat(3, 1, CV_64FC1);
 
 		//temp buffer for decomposeProjectionMatrix()
@@ -375,9 +375,9 @@ int main() {
 #endif
 
 			// Camera matrix calculations 
-			double focal_length = frame.cols; 
+			double focal_length = frame.cols;
 			cv::Point2d center_point = cv::Point2d(frame.cols / 2, frame.rows / 2);
-			cv::Mat camera_matrix = get_camera_matrix(focal_length,center_point);
+			cv::Mat camera_matrix = get_camera_matrix(focal_length, center_point);
 			cv::Mat dist_coeffs = cv::Mat::zeros(4, 1, cv::DataType<double>::type); // Assuming no lens distortion
 			cv_image<bgr_pixel> cimg(frame);
 			//Assume no distortion
@@ -387,15 +387,15 @@ int main() {
 
 			std::clock_t faceDetectStart = std::clock();
 			std::vector<rectangle> faces = detector(cimg);
-			double faceDetectTime = std::clock()-faceDetectStart;
-			if (flag1) {
+			double faceDetectTime = std::clock() - faceDetectStart;
+			if (flag1&& faces.size()>0) {
 				temp = faces;
 				flag1 = false;
 			}
 			//Attempt to approximate where the face is when we lose track of it.
 			if (faces.size() == 0) {
 				faces = temp;
-				
+
 			}
 			if (faces.size() > 0) {
 				change_In_X = temp[0].left() - faces[0].left();
@@ -419,7 +419,7 @@ int main() {
 			//Find the offsetFromBase
 			std::clock_t getOffsetStart = std::clock();
 			offsetFromBase = get_offset_from_base(faces, image_pts, object_pts, camera_matrix, dist_coeffs, rotation_matrix, rotation_vector, translation_vector, position_matrix, out_intrinsics, out_rotation, out_translation, euler_angle);
-			double getOffsetTime = std::clock()-getOffsetStart;			
+			double getOffsetTime = std::clock() - getOffsetStart;
 
 			//Confidence level calculation
 			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
@@ -456,26 +456,26 @@ int main() {
 			rectangle rem;
 			temp = faces;
 			if (desiredConfMethod == 2) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) +  "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(offsetFromBase) + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(offsetFromBase) + "\nConfidence Level :" + std::to_string(confidence_Level)));
 			}
 			else if (desiredConfMethod == 3) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) +  "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(tempDistance) + "\nConfidence Level :" + std::to_string(confidence_Level)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nDISTANCE OF Y FROM BASE :" + std::to_string(tempDistance) + "\nConfidence Level :" + std::to_string(confidence_Level)));
 				if (faces.size() > 0) {
 					awindow.add_overlay(faces[0]);
 				}
 			}
 			else if (desiredConfMethod == 1) {
-				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1))+ "\nZ :" + std::to_string(euler_angle.at<double>(2))  + "\nConfidence Level :" + std::to_string(confidence_Level) + "\nIs Person Still? :" + std::to_string(personIsStill)));
+				awindow.add_overlay(image_window::overlay_rect(rect, rgb_pixel(UI_R, UI_G, UI_B), "FRAMES PER SECOND: " + std::to_string(fps) + "\nBLINK DURATION IN SECONDS: " + std::to_string(blink_dur) + "\nX :" + std::to_string(euler_angle.at<double>(0)) + "\nY :" + std::to_string(euler_angle.at<double>(1)) + "\nZ :" + std::to_string(euler_angle.at<double>(2)) + "\nConfidence Level :" + std::to_string(confidence_Level) + "\nIs Person Still? :" + std::to_string(personIsStill)));
 
 				if (faces.size() > 0) {
 					awindow.add_overlay(faces[0]);
 				}
 				image_pts.clear();
 			}
-			double renderTime = std::clock()-renderStart;
+			double renderTime = std::clock() - renderStart;
 
-			
-			cout << "faceDetectTime "<<faceDetectTime/ (double)CLOCKS_PER_SEC <<"s\trenderGUITime " <<renderTime/ (double)CLOCKS_PER_SEC<<"s\tgetOffsetTime "<<getOffsetTime/ (double)CLOCKS_PER_SEC<<"s\n\n"; 
+
+			cout << "faceDetectTime " << faceDetectTime / (double)CLOCKS_PER_SEC << "s\trenderGUITime " << renderTime / (double)CLOCKS_PER_SEC << "s\tgetOffsetTime " << getOffsetTime / (double)CLOCKS_PER_SEC << "s\n\n";
 
 			//Printing result to a file for debugging and training purposes.
 			if (PRINT_TO_FILE > 0) {
@@ -505,7 +505,7 @@ int main() {
 				file.close();
 			}
 		}
-	}
+		}
 	catch (serialization_error& e) {
 		cout << "Cannot find .dat file, check the location." << endl;
 		cout << endl << e.what() << endl;
@@ -514,4 +514,4 @@ int main() {
 		cout << "jhee" << endl;
 		cout << e.what() << endl;
 	}
-}
+	}
