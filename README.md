@@ -1,14 +1,14 @@
-#UPVision README
+# UPVision README
 
-##About UPVision
+## About UPVision
 UPVision is a system designed for detecting forklift operator fatigue. UPVision is the product of a capstone project at University of Portland involving four Computer Science and Electrical Engineering students, and is sponsored by Hyster-Yale Materials Handling.
 
-##Project Dependencies
+## Project Dependencies
 - To build this project, we have been using CMake, which is a makefile generator available for free at https://cmake.org/download/. You may be able to use different methods for making the project, but CMake has been our go-to.
 - You will also need to install dlib and OpenCV, which are the image processing libraries we chose for the project. These are available at: http://dlib.net/ and https://opencv.org/releases.html.
 - While it is certainly not a requirement, the instructions for building this project assume that the user is using a Linux-based machine. It is possible to build on Windows, but we have limited experience with that.
 
-##How to Build/Run
+## How to Build/Run
 To build the project on a Linux-based machine, follow the following steps: 
 
 1. Download/extract the .zip file and navigate to the project directory via the terminal.
