@@ -11,14 +11,14 @@ UPVision is a system designed for detecting forklift operator fatigue. UPVision 
 ##How to Build/Run
 To build the project on a Linux-based machine, follow the following steps: 
 
-1. Download the .zip file and navigate to the project directory via the terminal.
+1. Download/extract the .zip file and navigate to the project directory via the terminal.
 2. If there is a build folder in the project directory, move "shape\_predictor\_68\_face\_landmarks.dat" and "CMakeLists.txt" to the project directory, and delete the build folder.
 3. Next, run the following commands in succession.
 	- mkdir build
-	- mv shape\_predictor\_68\_face\_landmarks.dat /build
-	- mv CMakeLists.txt /build
-	- cd /build
+	- mv shape\_predictor\_68\_face\_landmarks.dat build
+	- mv CMakeLists.txt build
+	- cd build
 	- cmake .
 	- cmake --build . --config Release
 	- ./imageCapture
-4. If you make any changes, run "cmake --build . --config Release" in the /build directory to compile and rebuild.
+4. If you make any changes, run "cmake --build . --config Release" in the build folder to compile and rebuild.
