@@ -19,7 +19,7 @@
 #include "dlib-19.9/dlib/gui_widgets.h"
 #include <opencv2/calib3d/calib3d.hpp>
 
-#define USE_RP_CAM 0
+#define USE_RP_CAM 1
 
 #if USE_RP_CAM
 #include "raspicam/raspicam_cv.h"
@@ -54,6 +54,28 @@ cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
 {
     cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) << focal_length, 0, center_point.x, 0, focal_length, center_point.y, 0, 0, 1);
     return camera_matrix;
+}
+
+/*
+ Method name:set_led_pin
+ Description: Helper method used to turn led pins on and off
+ Input Paramater:the number of the pin
+ Return Paramater: None
+ */
+void set_led_pin(int pin_num) {
+	 if(pin_num == 0) {
+		 digitalWrite(0, HIGH);
+		 digitalWrite(1, LOW);
+		 digitalWrite(2, LOW);
+	 } else if (pin_num == 1) {
+		 digitalWrite(0, LOW);
+		 digitalWrite(1, HIGH);
+		 digitalWrite(2, LOW);	
+	 } else {
+		 digitalWrite(0, LOW);
+		 digitalWrite(1, LOW);
+		 digitalWrite(2, HIGH);
+	 }
 }
 
 /*
@@ -260,6 +282,14 @@ int main() {
 #if USE_RP_CAM
         raspicam::RaspiCam_Cv cap;
         wiringPiSetup();
+	
+	//set the I/O state of the given pins	
+	pinMode(0, OUTPUT); //green LED pin
+	pinMode(1, OUTPUT); //yellow LED pin
+	pinMode(2, OUTPUT); //red LED pin
+	//pinMode(3, INPUT); //button
+
+	cout << "Wiring pi is working" << endl;
 #else
         cv::VideoCapture cap(0);
 #endif
@@ -275,8 +305,8 @@ int main() {
 #else
             if (!cap.isOpened()) {
 #endif
-                cerr << "Unable to open camera" << endl;
-                return 1;
+                //cerr << "Unable to open camera" << endl;
+                //return 1;
             }
             //Load up the face detection
             frontal_face_detector detector = get_frontal_face_detector();
@@ -438,32 +468,35 @@ int main() {
                 //Set color for UI overlay
                 if (confidence_Level < 50) {
 #if USE_RP_CAM
-                    digitalWrite(0,HIGH); //turn pin 0 (green pin) on
-                    digitalWrite(1,LOW); //turn yellow pin off
-                    digitalWrite(2,LOW); //turn red pin off
+		                  set_led_pin(0);
 #endif
                     UI_R = 0;
                     UI_G = 255;
                 }
                 else if (confidence_Level < 70) {
 #if USE_RP_CAM
-                    digitalWrite(0,LOW); //turn pin 0 (green pin) off
-                    digitalWrite(1,HIGH); //turn yellow pin on
-                    digitalWrite(2,LOW); //turn red pin off
+		                  set_led_pin(1);
 #endif
                     UI_R = 255;
                     UI_G = 255;
                 }
                 else {
 #if USE_RP_CAM
-                    digitalWrite(0,LOW); //turn pin 0 (green pin) off
-                    digitalWrite(1,LOW); //turn yellow pin off
-                    digitalWrite(2,HIGH); //turn red pin on
+		                  set_led_pin(2);
 #endif
                     UI_R = 255;
                     UI_G = 0;
                 }
-                
+/*
+  //USED FOR DEBUGGING PURPOSES
+		int greenPinStatus = digitalRead(0);
+		int yellowPinStatus = digitalRead(1);
+		int redPinStatus = digitalRead(2);
+		
+		cout << "Green Pin Status: " << greenPinStatus << endl;
+		cout << "Yellow Pin Status: " << yellowPinStatus << endl;
+		cout << "Red Pin Status: " << redPinStatus << endl;
+ */               
                 //reset the window and redraw everything.
                 std::clock_t renderStart = std::clock();
                 awindow.clear_overlay();
@@ -492,7 +525,7 @@ int main() {
                 double renderTime = std::clock() - renderStart;
                 
                 
-                cout << "faceDetectTime " << faceDetectTime / (double)CLOCKS_PER_SEC << "s\trenderGUITime " << renderTime / (double)CLOCKS_PER_SEC << "s\tgetOffsetTime " << getOffsetTime / (double)CLOCKS_PER_SEC << "s\n\n";
+                //cout << "faceDetectTime " << faceDetectTime / (double)CLOCKS_PER_SEC << "s\trenderGUITime " << renderTime / (double)CLOCKS_PER_SEC << "s\tgetOffsetTime " << getOffsetTime / (double)CLOCKS_PER_SEC << "s\n\n";
                 
                 //Printing result to a file for debugging and training purposes.
                 if (PRINT_TO_FILE > 0) {
