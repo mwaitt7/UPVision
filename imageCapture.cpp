@@ -63,19 +63,19 @@ cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
  Return Paramater: None
  */
 void set_led_pin(int pin_num) {
-	 if(pin_num == 0) {
-		 digitalWrite(0, HIGH);
-		 digitalWrite(1, LOW);
-		 digitalWrite(2, LOW);
-	 } else if (pin_num == 1) {
-		 digitalWrite(0, LOW);
-		 digitalWrite(1, HIGH);
-		 digitalWrite(2, LOW);	
-	 } else {
-		 digitalWrite(0, LOW);
-		 digitalWrite(1, LOW);
-		 digitalWrite(2, HIGH);
-	 }
+	if(pin_num == 0) {
+		digitalWrite(0, HIGH);
+		digitalWrite(1, LOW);
+		digitalWrite(2, LOW);
+	} else if (pin_num == 1) {
+		digitalWrite(0, LOW);
+		digitalWrite(1, HIGH);
+		digitalWrite(2, LOW);	
+	} else {
+		digitalWrite(0, LOW);
+		digitalWrite(1, LOW);
+		digitalWrite(2, HIGH);
+	}
 }
 
 /*
@@ -287,9 +287,13 @@ int main() {
 	pinMode(0, OUTPUT); //green LED pin
 	pinMode(1, OUTPUT); //yellow LED pin
 	pinMode(2, OUTPUT); //red LED pin
-	//pinMode(3, INPUT); //button
+	pinMode(3, INPUT); //button
 
-	cout << "Wiring pi is working" << endl;
+	int greenPinStatus = digitalRead(0);
+	int yellowPinStatus = digitalRead(1);
+	int redPinStatus = digitalRead(2);
+	int buttonPinStatus = digitalRead(3);
+	int buttonPressedWeight = 0.5;
 #else
         cv::VideoCapture cap(0);
 #endif
@@ -299,7 +303,6 @@ int main() {
         cap.set(CV_CAP_PROP_FRAME_WIDTH, 480 / 2);
         cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240 / 2);
         
-        // Michael changed this to isOpened() to fix compiler errors
 #if USE_RP_CAM
         if (!cap.open()) {
 #else
@@ -453,10 +456,13 @@ int main() {
                 offsetFromBase = get_offset_from_base(faces, image_pts, object_pts, camera_matrix, dist_coeffs, rotation_matrix, rotation_vector, translation_vector, position_matrix, out_intrinsics, out_rotation, out_translation, euler_angle);
                 double getOffsetTime = std::clock() - getOffsetStart;
                 
-                //Confidence level calculation
-                confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
-                
-                
+		//Confidence level calculation
+		if(confidence_Level >= 70) {
+			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill) + (buttonPressedWeight*buttonPinStatus);
+		} else {
+                	confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
+                }
+            
                 //Make sure it doesn't exceed the bounds
                 if (confidence_Level < 0) {
                     confidence_Level = 0;
@@ -468,35 +474,34 @@ int main() {
                 //Set color for UI overlay
                 if (confidence_Level < 50) {
 #if USE_RP_CAM
-		                  set_led_pin(0);
+		    set_led_pin(0);
 #endif
                     UI_R = 0;
                     UI_G = 255;
                 }
                 else if (confidence_Level < 70) {
 #if USE_RP_CAM
-		                  set_led_pin(1);
+		    set_led_pin(1);
 #endif
                     UI_R = 255;
                     UI_G = 255;
                 }
                 else {
 #if USE_RP_CAM
-		                  set_led_pin(2);
+		    set_led_pin(2);
 #endif
                     UI_R = 255;
                     UI_G = 0;
                 }
-/*
-  //USED FOR DEBUGGING PURPOSES
-		int greenPinStatus = digitalRead(0);
-		int yellowPinStatus = digitalRead(1);
-		int redPinStatus = digitalRead(2);
-		
+		    
+                /*
+		cout << "Wiring pi is working" << endl;
 		cout << "Green Pin Status: " << greenPinStatus << endl;
 		cout << "Yellow Pin Status: " << yellowPinStatus << endl;
 		cout << "Red Pin Status: " << redPinStatus << endl;
- */               
+		cout << "Button Pin Status: " << buttonPinStatus << endl;
+		*/
+		    
                 //reset the window and redraw everything.
                 std::clock_t renderStart = std::clock();
                 awindow.clear_overlay();
