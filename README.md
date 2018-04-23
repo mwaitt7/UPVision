@@ -18,7 +18,7 @@ To build the project on a Linux-based machine, follow the following steps:
 	- mv shape\_predictor\_68\_face\_landmarks.dat build
 	- mv CMakeLists.txt build
 	- cd build
-	- cmake ..
+	- cmake .
 	- cmake --build . --config Release
 	- ./imageCapture
 4. If you make any changes, run "cmake --build . --config Release" in the build folder to compile and rebuild.

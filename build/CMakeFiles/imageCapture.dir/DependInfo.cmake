@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp" "/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles/imageCapture.dir/Users/Michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o"
+  "/Users/michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp" "/Users/michael/Dropbox/Señor/Capstone/UPVision/build/CMakeFiles/imageCapture.dir/Users/michael/Dropbox/Señor/Capstone/UPVision/imageCapture.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -12,13 +12,12 @@ set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include"
   "/usr/local/include/opencv"
-  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/.."
-  "/Library/Frameworks/Mono.framework/Headers"
+  "/Users/michael/Dropbox/Señor/Capstone/UPVision/dlib-19.9/dlib/.."
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/dlib_build/CMakeFiles/dlib.dir/DependInfo.cmake"
+  "/Users/michael/Dropbox/Señor/Capstone/UPVision/build/dlib_build/CMakeFiles/dlib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Michael/Dropbox/Señor/Capstone/UPVision/build
+# Install script for directory: /Users/michael/Dropbox/Señor/Capstone/UPVision/build
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,9 +27,14 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/dlib_build/cmake_install.cmake")
+  include("/Users/michael/Dropbox/Señor/Capstone/UPVision/build/dlib_build/cmake_install.cmake")
 
 endif()
 
@@ -41,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/Michael/Dropbox/Señor/Capstone/UPVision/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/michael/Dropbox/Señor/Capstone/UPVision/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
