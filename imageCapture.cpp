@@ -19,7 +19,7 @@
 #include "dlib-19.9/dlib/gui_widgets.h"
 #include <opencv2/calib3d/calib3d.hpp>
 
-#define USE_RP_CAM 1
+#define USE_RP_CAM 0
 
 #if USE_RP_CAM
 #include "raspicam/raspicam_cv.h"
@@ -62,6 +62,7 @@ cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
  Input Paramater:the number of the pin
  Return Paramater: None
  */
+#if USE_RP_CAM
 void set_led_pin(int pin_num) {
 	if(pin_num == 0) {
 		digitalWrite(0, HIGH);
@@ -77,7 +78,7 @@ void set_led_pin(int pin_num) {
 		digitalWrite(2, HIGH);
 	}
 }
-
+#endif
 /*
  Method name:get the blinking duration
  Description: This method calculates how long are the eyes closed by looking at the corner of the eyes and the upper and lower eye lids.
@@ -279,6 +280,9 @@ double get_offset_from_base(std::vector<rectangle> faces, std::vector<cv::Point2
 int main() {
     try {
         //Initialize the video capture and set the camera to the first one
+int buttonPinStatus = 0;
+int buttonPressedWeight = 0;
+
 #if USE_RP_CAM
         raspicam::RaspiCam_Cv cap;
         wiringPiSetup();
