@@ -470,6 +470,7 @@ int buttonPressedWeight = 0;
                 double getOffsetTime = std::clock() - getOffsetStart;
 		clock_t endTimerButton;
 
+        #if USE_RP_CAM
 		//Confidence level calculation
 		if(confidence_Level > 50) {
 			if(digitalRead(4) == HIGH) {
@@ -482,7 +483,7 @@ int buttonPressedWeight = 0;
 		if(endTimerButton > 60) {
 			buttonPressedWeight = 0;
 		}
-
+        #endif
                 confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill) - buttonPressedWeight;
               	
 
@@ -518,7 +519,7 @@ int buttonPressedWeight = 0;
                     UI_R = 255;
                     UI_G = 0;
                 }
-                
+        #if USE_RP_CAM        
 		cout << "Green Pin Status: " << greenPinStatus << endl;
 		cout << "Yellow Pin Status: " << yellowPinStatus << endl;
 		cout << "Red Pin Status: " << redPinStatus << endl;
@@ -526,7 +527,7 @@ int buttonPressedWeight = 0;
 		cout << "Confidence Level: " << confidence_Level << endl;
 		cout << "Button Press Weight: " << buttonPressedWeight << endl;
 		cout << "Button Timer: " << endTimerButton << endl;
-
+        #endif
                 //reset the window and redraw everything.
                 std::clock_t renderStart = std::clock();
                 awindow.clear_overlay();
@@ -585,9 +586,12 @@ int buttonPressedWeight = 0;
                     file.close();
                 }
             }
+        #if USE_RP_CAM 
 		digitalWrite(0, LOW);
 		digitalWrite(2, LOW);
 		digitalWrite(3, LOW);
+        #endif
+        
         }
         catch (serialization_error& e) {
             cout << "Cannot find .dat file, check the location." << endl;
