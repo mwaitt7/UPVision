@@ -65,17 +65,17 @@ cv::Mat get_camera_matrix(float focal_length, cv::Point2d center_point)
 #if USE_RP_CAM
 void set_led_pin(int pin_num) {
 	if(pin_num == 0) {
-		digitalWrite(0, HIGH);
-		digitalWrite(1, LOW);
-		digitalWrite(2, LOW);
-	} else if (pin_num == 1) {
+		digitalWrite(0, HIGH);//17
+		digitalWrite(2, LOW);//27
+		digitalWrite(3, LOW);//22
+	} else if (pin_num == 2) {
 		digitalWrite(0, LOW);
-		digitalWrite(1, HIGH);
-		digitalWrite(2, LOW);	
-	} else {
-		digitalWrite(0, LOW);
-		digitalWrite(1, LOW);
 		digitalWrite(2, HIGH);
+		digitalWrite(3, LOW);	
+	} else if (pin_num == 3) {
+		digitalWrite(0, LOW);
+		digitalWrite(2, LOW);
+		digitalWrite(3, HIGH);
 	}
 }
 #endif
@@ -286,18 +286,27 @@ int buttonPressedWeight = 0;
 #if USE_RP_CAM
         raspicam::RaspiCam_Cv cap;
         wiringPiSetup();
-	
+
 	//set the I/O state of the given pins	
 	pinMode(0, OUTPUT); //green LED pin
-	pinMode(1, OUTPUT); //yellow LED pin
-	pinMode(2, OUTPUT); //red LED pin
-	pinMode(3, INPUT); //button
+	pinMode(2, OUTPUT); //yellow LED pin
+	pinMode(3, OUTPUT); //red LED pin
+	pinMode(4, INPUT); //button
+
+	digitalWrite(0, LOW);
+	digitalWrite(2, LOW);
+	digitalWrite(3, LOW);
 
 	int greenPinStatus = digitalRead(0);
-	int yellowPinStatus = digitalRead(1);
-	int redPinStatus = digitalRead(2);
-	int buttonPinStatus = digitalRead(3);
-	int buttonPressedWeight = 0.5;
+	int yellowPinStatus = digitalRead(2);
+	int redPinStatus = digitalRead(3);
+	int buttonPinStatus = digitalRead(4);
+
+	clock_t startTimerButton;
+
+	int buttonPressedWeight = 0;
+
+	cout << "Wiring pi is working" << endl;
 #else
         cv::VideoCapture cap(0);
 #endif
@@ -459,13 +468,25 @@ int buttonPressedWeight = 0;
                 std::clock_t getOffsetStart = std::clock();
                 offsetFromBase = get_offset_from_base(faces, image_pts, object_pts, camera_matrix, dist_coeffs, rotation_matrix, rotation_vector, translation_vector, position_matrix, out_intrinsics, out_rotation, out_translation, euler_angle);
                 double getOffsetTime = std::clock() - getOffsetStart;
-                
+		clock_t endTimerButton;
+
 		//Confidence level calculation
-		if(confidence_Level >= 70) {
-			confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill) + (buttonPressedWeight*buttonPinStatus);
-		} else {
-                	confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill);
-                }
+		if(confidence_Level > 50) {
+			if(digitalRead(4) == HIGH) {
+				buttonPressedWeight = 2*(1+timeElapsed);
+				startTimerButton = clock();
+			}
+		} 
+
+		endTimerButton = (clock() - startTimerButton)/CLOCKS_PER_SEC;
+		if(endTimerButton > 60) {
+			buttonPressedWeight = 0;
+		}
+
+                confidence_Level += (offsetFromBase*HEAD_ORIENTATION_CONFIDENCE_WEIGTH - HEAD_ORIENTATION_CONFIDENCE_WEIGTH) + (EYE_CLOSED_CONFIDENCE_WEIGHT*blink_dur - EYE_CLOSED_CONFIDENCE_WEIGHT) + (ACTIVITY_LEVEL_WEIGHT*personIsStill) - buttonPressedWeight;
+              	
+
+		std::clock_t endCounter = std::clock();
             
                 //Make sure it doesn't exceed the bounds
                 if (confidence_Level < 0) {
@@ -474,38 +495,38 @@ int buttonPressedWeight = 0;
                 if (confidence_Level > 100) {
                     confidence_Level = 100;
                 }
-                
+
                 //Set color for UI overlay
-                if (confidence_Level < 50) {
+                if (confidence_Level <= 50) {
 #if USE_RP_CAM
 		    set_led_pin(0);
 #endif
                     UI_R = 0;
                     UI_G = 255;
                 }
-                else if (confidence_Level < 70) {
+                else if (confidence_Level <= 85) {
 #if USE_RP_CAM
-		    set_led_pin(1);
+		    set_led_pin(2);
 #endif
                     UI_R = 255;
                     UI_G = 255;
                 }
                 else {
 #if USE_RP_CAM
-		    set_led_pin(2);
+		    set_led_pin(3);
 #endif
                     UI_R = 255;
                     UI_G = 0;
                 }
-		    
-                /*
-		cout << "Wiring pi is working" << endl;
+                
 		cout << "Green Pin Status: " << greenPinStatus << endl;
 		cout << "Yellow Pin Status: " << yellowPinStatus << endl;
 		cout << "Red Pin Status: " << redPinStatus << endl;
 		cout << "Button Pin Status: " << buttonPinStatus << endl;
-		*/
-		    
+		cout << "Confidence Level: " << confidence_Level << endl;
+		cout << "Button Press Weight: " << buttonPressedWeight << endl;
+		cout << "Button Timer: " << endTimerButton << endl;
+
                 //reset the window and redraw everything.
                 std::clock_t renderStart = std::clock();
                 awindow.clear_overlay();
@@ -564,6 +585,9 @@ int buttonPressedWeight = 0;
                     file.close();
                 }
             }
+		digitalWrite(0, LOW);
+		digitalWrite(2, LOW);
+		digitalWrite(3, LOW);
         }
         catch (serialization_error& e) {
             cout << "Cannot find .dat file, check the location." << endl;
