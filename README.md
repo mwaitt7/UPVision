@@ -1,7 +1,7 @@
 # UPVision README
 
 ## About UPVision
-UPVision is a system designed for detecting forklift operator fatigue. UPVision is the product of a capstone project at University of Portland involving four Computer Science and Electrical Engineering students, and is sponsored by Hyster-Yale Materials Handling.
+UPVision is a computer vision system designed for detecting forklift operator fatigue. UPVision is the product of an industry-sponsored multidisciplinary engineering capstone project at University of Portland involving four Computer Science and Electrical Engineering students, and is sponsored by Hyster-Yale Materials Handling Group. For more info about the team, the process, and Hyster-Yale please view our final report, it is located in the project repository.
 
 ## Project Dependencies
 - To build this project, we have been using CMake, which is a makefile generator available for free at https://cmake.org/download/. You may be able to use different methods for making the project, but CMake has been our go-to.
